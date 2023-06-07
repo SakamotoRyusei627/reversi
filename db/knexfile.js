@@ -1,14 +1,16 @@
 // process.env.NODE_ENV = "production";
 require("dotenv").config({
-  path: "../.env",
+  path: ".env",
 });
 
+// console.log("process.env.DB_USER", process.env.DB_USER);
+// console.log("process.env.DB_NAME", process.env.DB_NAME);
 module.exports = {
   development: {
     client: "pg",
     connection: {
-      user: process.env.DB_USER || "default",
-      database: process.env.DB_NAME || "default",
+      user: process.env.DB_USER || "RYUSEI",
+      database: process.env.DB_NAME || "othello",
       password: process.env.DB_PASSWORD,
     },
     migrations: {

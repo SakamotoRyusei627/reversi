@@ -29,7 +29,7 @@
     "migrate-down": "npx knex migrate:down --knexfile db/knexfile.js",
     "seed-make": "npx knex seed:make --knexfile db/knexfile.js",
     "seed-data": "npx knex seed:run --knexfile db/knexfile.js",
-    "db-setup": "echo 'CREATE DATABASE test;' | psql"
+    "db-setup": "echo 'CREATE DATABASE othello;' | psql"
   },
   "eslintConfig": {
     "extends": [
