@@ -20,7 +20,7 @@ const MainBoard = (props) => {
       });
     };
     postStone();
-  }, [board]);
+  }, [board, color, playID]);
 
   const circleJudgment = (elem, index, raw) => {
     let colorName;
