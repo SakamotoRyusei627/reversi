@@ -1,10 +1,8 @@
+import React, { useState, useEffect, useContext } from "react";
 import "./App.css";
-import Master from "./component/Master";
 import Header from "./component/Header";
 import MainBoard from "./component/MainBoard";
 import Navi from "./component/Navi";
-
-import React, { useState, useEffect, useContext } from "react";
 
 function App() {
   // 0は何もない
@@ -21,6 +19,8 @@ function App() {
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
   ]);
+  const [canBePlacedWhite, setCanBePlacedWhite] = useState([]);
+  const [canBePlacedBlack, setCanBePlacedBlack] = useState([]);
   const [color, setColor] = useState("黒");
   const [playID, setPlayID] = useState();
 
