@@ -11,38 +11,44 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
+const setupServer = () => {
+  app.get("/cards", async (req, res) => {
+    const getMatchCard = await knex.select("*").from("match_card");
+    res.set("content-type", "application/json").status(200).send(getMatchCard);
+  });
 
-app.get("/cards", async (req, res) => {
-  const getMatchCard = await knex.select("*").from("match_card");
-  res.set("content-type", "application/json").status(200).send(getMatchCard);
-});
+  app.post("/stones/:id", async (req, res) => {
+    await knex("match_card")
+      .select("*")
+      .where("id", req.params.id)
+      .update({
+        situation: JSON.stringify(req.body.board),
+        color: req.body.color,
+      });
 
-app.post("/stones/:id", async (req, res) => {
-  await knex("match_card")
-    .select("*")
-    .where("id", req.params.id)
-    .update({
-      situation: JSON.stringify(req.body.board),
-      color: req.body.color,
-    });
+    res.status(200).send("ポストされました。");
+  });
 
-  res.status(200).send("ポストされました。");
-});
+  app.post("/data/:id", async (req, res) => {
+    console.log("プットされました。");
+    await knex("match_card")
+      .select("*")
+      .where("id", req.params.id)
+      .update({
+        situation: JSON.stringify(req.body),
+        color: "黒",
+      });
+    const sssss = await knex("match_card")
+      .select("*")
+      .where("id", req.params.id);
+    console.log(sssss);
+    res.status(200).send("プットされました。");
+  });
 
-app.post("/data/:id", async (req, res) => {
-  console.log("プットされました。");
-  await knex("match_card")
-    .select("*")
-    .where("id", req.params.id)
-    .update({
-      situation: JSON.stringify(req.body),
-      color: "黒",
-    });
-  const sssss = await knex("match_card").select("*").where("id", req.params.id);
-  console.log(sssss);
-  res.status(200).send("プットされました。");
-});
-
-app.listen(PORT, () => {
+  return app;
+};
+setupServer().listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+module.exports = setupServer;
