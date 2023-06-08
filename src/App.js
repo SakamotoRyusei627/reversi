@@ -6,6 +6,10 @@ import Navigation from "./component/Navigation";
 import getCanBePlaced from "./logic";
 import firework from "./finish.gif";
 console.log(process.env.NODE_ENV);
+const URL =
+  process.env.NODE_ENV === "production"
+    ? "/cards"
+    : "http://localhost:8000/cards";
 
 function App() {
   // 0は何もない
@@ -51,10 +55,7 @@ function App() {
   });
   useEffect(() => {
     const asyncFetch = async () => {
-      const matchCard = await fetch(
-        `/cards`
-        // `http://localhost:8000/cards`
-      )
+      const matchCard = await fetch(`${URL}`)
         .then((data) => data.json())
         .catch((e) => console.error(e));
 

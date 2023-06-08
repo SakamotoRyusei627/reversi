@@ -11,6 +11,12 @@ const Navigation = (props) => {
     setFinishFlag,
     setBoard,
   } = props;
+
+  const URL =
+    process.env.NODE_ENV === "production"
+      ? `/data/${playID}`
+      : `http://localhost:8000/data/${playID}`;
+
   let winner;
   if (matchResult.blackStone > matchResult.whiteStone) {
     winner = "黒の勝ち";
@@ -57,17 +63,13 @@ const Navigation = (props) => {
         });
       })
     );
-    await fetch(
-      `/data/${playID}`,
-      // `http://localhost:8000/data/${playID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(defaultData),
-      }
-    )
+    await fetch(`${URL}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(defaultData),
+    })
       .then(setFinishFlag(false))
       .catch((e) => console.error(e));
   };
