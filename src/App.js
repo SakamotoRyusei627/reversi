@@ -5,6 +5,7 @@ import Board from "./component/Board";
 import Navigation from "./component/Navigation";
 import getCanBePlaced from "./logic";
 import firework from "./finish.gif";
+console.log(process.env.NODE_ENV);
 
 function App() {
   // 0は何もない
