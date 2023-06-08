@@ -3,7 +3,6 @@ import "./App.css";
 import Header from "./component/Header";
 import MainBoard from "./component/Board";
 import Navigation from "./component/Navigation";
-const URL = process.env.DATABASE_URL ? "/cards" : "http://localhost:8000/cards";
 
 function App() {
   // 0は何もない
@@ -20,33 +19,16 @@ function App() {
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
   ]);
-  const [canBePlacedWhite, setCanBePlacedWhite] = useState([
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-  ]);
-  const [canBePlacedBlack, setCanBePlacedBlack] = useState([
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-    [[], [], [], [], [], [], [], []],
-  ]);
+  const [canBePlacedWhite, setCanBePlacedWhite] = useState([]);
+  const [canBePlacedBlack, setCanBePlacedBlack] = useState([]);
   const [color, setColor] = useState("黒");
   const [playID, setPlayID] = useState();
 
   useEffect(() => {
     const asyncFetch = async () => {
-      const matchCardJSON = await (await fetch(`/cards`)).text();
-      const matchCard = JSON.parse(matchCardJSON);
+      const matchCard = await fetch(`/cards`).then((data) => data.json());
+      console.log(matchCard);
+
       setPlayID(Number(matchCard[0].id));
       const situation = JSON.parse(matchCard[0].situation);
 
