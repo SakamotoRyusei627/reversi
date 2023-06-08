@@ -4,8 +4,8 @@ import Header from "./component/Header";
 import MainBoard from "./component/Board";
 import Navigation from "./component/Navigation";
 const URL = process.env.DATABASE_URL ? "/cards" : "http://localhost:8000/cards";
-const environment = process.env.DATABASE_URL ? "production" : "development";
-console.log(environment);
+// const environment = process.env.NODE_DEV ? "production" : "development";
+console.log(process.env.NODE_DEV);
 console.log(URL);
 function App() {
   // 0は何もない
