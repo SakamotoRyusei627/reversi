@@ -4,7 +4,8 @@ import Header from "./component/Header";
 import MainBoard from "./component/Board";
 import Navigation from "./component/Navigation";
 const URL = process.env.DATABASE_URL ? "/cards" : "http://localhost:8000/cards";
-
+const environment = process.env.DATABASE_URL ? "production" : "development";
+console.log(environment);
 console.log(URL);
 function App() {
   // 0は何もない
@@ -21,8 +22,26 @@ function App() {
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
   ]);
-  const [canBePlacedWhite, setCanBePlacedWhite] = useState([]);
-  const [canBePlacedBlack, setCanBePlacedBlack] = useState([]);
+  const [canBePlacedWhite, setCanBePlacedWhite] = useState([
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+  ]);
+  const [canBePlacedBlack, setCanBePlacedBlack] = useState([
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+    [[], [], [], [], [], [], [], []],
+  ]);
   const [color, setColor] = useState("黒");
   const [playID, setPlayID] = useState();
 
