@@ -14,7 +14,7 @@ const MainBoard = (props) => {
       }
       const postData = { board: board, color: color };
       console.log();
-      await fetch(`${URL}${playID}`, {
+      await fetch(`/stones/${playID}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
