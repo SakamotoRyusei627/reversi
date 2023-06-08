@@ -21,6 +21,22 @@
   justify-content: center;
   align-items: center;
 }
+.cell:hover {
+  background-color: darkgreen;
+}
+.cell-canBePlace {
+  width: 50px;
+  height: 50px;
+  border: 1px solid white;
+  background-color: lightgreen;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cell:hover {
+  background-color: darkgreen;
+}
 
 .circle-black {
   display: inline-block;

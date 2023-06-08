@@ -1,7 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
+import "./Header.css";
 
 const Header = () => {
-  return <h1>オセロゲーム</h1>;
+  return (
+    <div className="header">
+      <h1>オセロゲーム</h1>
+    </div>
+  );
 };
 
 export default Header;

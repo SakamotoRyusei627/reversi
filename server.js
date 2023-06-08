@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8000;
 app.use(express.static("build"));
 app.use(express.json());
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
@@ -27,6 +27,20 @@ app.post("/stones/:id", async (req, res) => {
     });
 
   res.status(200).send("ポストされました。");
+});
+
+app.post("/data/:id", async (req, res) => {
+  console.log("プットされました。");
+  await knex("match_card")
+    .select("*")
+    .where("id", req.params.id)
+    .update({
+      situation: JSON.stringify(req.body),
+      color: "黒",
+    });
+  const sssss = await knex("match_card").select("*").where("id", req.params.id);
+  console.log(sssss);
+  res.status(200).send("プットされました。");
 });
 
 app.listen(PORT, () => {
