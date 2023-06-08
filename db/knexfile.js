@@ -3,8 +3,8 @@ require("dotenv").config({
   path: ".env",
 });
 
-// console.log("process.env.DB_USER", process.env.DB_USER);
-// console.log("process.env.DB_NAME", process.env.DB_NAME);
+console.log("process.env.DB_USER", process.env.DB_USER);
+console.log("process.env.DB_NAME", process.env.DB_NAME);
 module.exports = {
   development: {
     client: "pg",
