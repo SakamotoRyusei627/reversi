@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./Board.css";
+const URL = process.env.DATABASE_URL
+  ? "/stones/"
+  : "http://localhost:8000/stones/";
 
 const MainBoard = (props) => {
   const { board, setBoard, color, setColor, playID } = props;
@@ -11,7 +14,7 @@ const MainBoard = (props) => {
       }
       const postData = { board: board, color: color };
       console.log();
-      const postReturn = await fetch(`http://localhost:8000/stones/${playID}`, {
+      const postReturn = await fetch(`${URL}${playID}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./component/Header";
 import MainBoard from "./component/Board";
 import Navi from "./component/Navi";
+const URL = process.env.DATABASE_URL ? "/cards" : "http://localhost:8000/cards";
 
 function App() {
   // 0は何もない
@@ -26,9 +27,7 @@ function App() {
 
   useEffect(() => {
     const asyncFetch = async () => {
-      const matchCardJSON = await (
-        await fetch("http://localhost:8000/cards")
-      ).text();
+      const matchCardJSON = await (await fetch(`${URL}`)).text();
       const matchCard = JSON.parse(matchCardJSON);
       setPlayID(Number(matchCard[0].id));
       const situation = JSON.parse(matchCard[0].situation);
