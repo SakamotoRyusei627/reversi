@@ -22,7 +22,6 @@ const Board = (props) => {
         return;
       }
       const postData = { board: board, color: color };
-      console.log();
       await fetch(`${URL}`, {
         method: "POST",
         headers: {
@@ -50,7 +49,6 @@ const Board = (props) => {
     }
 
     const putStone = (e) => {
-      console.log("クリックされました。");
       const indexNum = e.target.id.split("_");
       let [raw, column] = indexNum;
       raw = Number(raw);
@@ -75,9 +73,6 @@ const Board = (props) => {
         canBePlaced = canBePlacedWhite[raw][column];
         setColor("黒");
       }
-      console.log(canBePlaced);
-
-      console.log();
 
       setBoard((prevState) =>
         prevState.map((elem1, index1) => {

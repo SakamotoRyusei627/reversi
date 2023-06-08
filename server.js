@@ -30,7 +30,6 @@ const setupServer = () => {
   });
 
   app.post("/data/:id", async (req, res) => {
-    console.log("プットされました。");
     await knex("match_card")
       .select("*")
       .where("id", req.params.id)
@@ -38,10 +37,6 @@ const setupServer = () => {
         situation: JSON.stringify(req.body),
         color: "黒",
       });
-    const sssss = await knex("match_card")
-      .select("*")
-      .where("id", req.params.id);
-    console.log(sssss);
     res.status(200).send("プットされました。");
   });
 

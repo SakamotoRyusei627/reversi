@@ -62,18 +62,14 @@ function App() {
       setPlayID(Number(matchCard[0].id));
       const situation = JSON.parse(matchCard[0].situation);
 
-      const finishConfirmation = () => {
-        for (let i = 0; i < situation.length; i++) {
-          for (let j = 0; j < situation[i].length; j++) {
-            if (situation[i][j] === 0) {
-              setFinishFlag(false);
-              return;
-            }
-          }
+      let openingsFlag = false;
+      situation.flat().forEach((elem) => {
+        if (elem === 0) {
+          openingsFlag = true;
+          return true;
         }
-        setFinishFlag(true);
-      };
-      finishConfirmation();
+      });
+      setFinishFlag(!openingsFlag);
 
       setMatchResult((prevState) => ({
         ...prevState,
@@ -82,8 +78,8 @@ function App() {
       }));
 
       setBoard((prevState) =>
-        prevState.map((elem1, index1) => {
-          return elem1.map((elem2, index2) => {
+        prevState.map((arr, index1) => {
+          return arr.map((elem2, index2) => {
             if (elem2 === situation[index1][index2]) {
               return elem2;
             } else {
@@ -93,29 +89,32 @@ function App() {
         })
       );
       setColor(matchCard[0].color);
-      const whiteStone = getCanBePlaced(situation, "白");
-      const blackStone = getCanBePlaced(situation, "黒");
-      setCanBePlacedWhite((prevState) =>
-        prevState.map((elem1, index1) => {
-          return elem1.map((elem2, index2) => {
-            return whiteStone[index1][index2];
-          });
-        })
-      );
-      setCanBePlacedBlack((prevState) =>
-        prevState.map((elem1, index1) => {
-          return elem1.map((elem2, index2) => {
-            return blackStone[index1][index2];
-          });
-        })
-      );
+      if (matchCard[0].color === "白") {
+        const whiteStone = getCanBePlaced(situation, "白");
+        setCanBePlacedWhite((prevState) =>
+          prevState.map((arr, index1) => {
+            return arr.map((elem2, index2) => {
+              return whiteStone[index1][index2];
+            });
+          })
+        );
+      } else if (matchCard[0].color === "黒") {
+        const blackStone = getCanBePlaced(situation, "黒");
+        setCanBePlacedBlack((prevState) =>
+          prevState.map((arr, index1) => {
+            return arr.map((elem2, index2) => {
+              return blackStone[index1][index2];
+            });
+          })
+        );
+      }
     };
 
     const interval = setInterval(() => {
       asyncFetch();
-    }, 1000);
+    }, 100);
     return () => clearInterval(interval);
-  }, [finishFlag]);
+  }, []);
 
   return (
     <>

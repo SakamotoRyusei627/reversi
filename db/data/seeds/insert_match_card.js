@@ -4,7 +4,6 @@
  */
 
 exports.seed = async function (knex) {
-  // Deletes ALL existing entries
   await knex("match_card").del();
   await knex("match_card").insert([
     {
