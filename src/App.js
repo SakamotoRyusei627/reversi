@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./App.css";
 import Header from "./component/Header";
-import MainBoard from "./component/MainBoard";
+import MainBoard from "./component/Board";
 import Navi from "./component/Navi";
 
 function App() {

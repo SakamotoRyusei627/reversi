@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./MainBoard.css";
+import "./Board.css";
 
 const MainBoard = (props) => {
   const { board, setBoard, color, setColor, playID } = props;
