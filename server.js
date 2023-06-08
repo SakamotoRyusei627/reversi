@@ -7,8 +7,8 @@ app.use(express.static("build"));
 app.use(express.json());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
 
@@ -18,7 +18,7 @@ app.get("/cards", async (req, res) => {
 });
 
 app.post("/stones/:id", async (req, res) => {
-  const postResult = await knex("match_card")
+  await knex("match_card")
     .select("*")
     .where("id", req.params.id)
     .update({

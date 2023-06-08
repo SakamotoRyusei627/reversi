@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 
-const Navi = (props) => {
+const Navigation = (props) => {
   const { color } = props;
   return (
     <div className="message-Box">
@@ -9,4 +9,4 @@ const Navi = (props) => {
   );
 };
 
-export default Navi;
+export default Navigation;

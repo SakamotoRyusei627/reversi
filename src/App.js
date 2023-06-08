@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./component/Header";
 import MainBoard from "./component/Board";
-import Navi from "./component/Navi";
+import Navigation from "./component/Navigation";
 const URL = process.env.DATABASE_URL ? "/cards" : "http://localhost:8000/cards";
 
+console.log(URL);
 function App() {
   // 0は何もない
   // 1は白
@@ -64,7 +65,7 @@ function App() {
           playID={playID}
         />
       }
-      <Navi color={color} />
+      <Navigation color={color} />
     </>
   );
 }
