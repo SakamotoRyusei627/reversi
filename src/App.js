@@ -112,7 +112,7 @@ function App() {
 
     const interval = setInterval(() => {
       asyncFetch();
-    }, 500);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
